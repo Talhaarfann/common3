@@ -1,0 +1,93 @@
+/* Common3 palette for the original Rayo theme. Loaded after main.css.
+   Brand colors and heading gradient only; layout, typography and animation remain in Rayo. */
+:root {
+  --base--light: #F5F3F7;
+  --base-rgb--light: 245, 243, 247;
+  --base-tint--light: #FFFFFF;
+  --base-shade--light: #E5DFEA;
+  --base-opp--light: #0A0A0A;
+  --base-opp-tint--light: #17131C;
+  --accent--light: #8B2CFA;
+  --accent-rgb--light: 139, 44, 250;
+  --additional--light: #E0C6FF;
+  --additional-rgb--light: 224, 198, 255;
+  --st-bright--light: #0A0A0A;
+  --st-medium--light: #817487;
+  --st-muted--light: #E5DFEA;
+  --t-bright--light: #0A0A0A;
+  --t-medium--light: #38303E;
+  --t-muted--light: #655B6C;
+  --t-muted-extra--light: #ABA1B2;
+
+  --base--dark: #0A0A0A;
+  --base-rgb--dark: 10, 10, 10;
+  --base-tint--dark: #131214;
+  --base-shade--dark: #171419;
+  --base-opp--dark: #F5F3F7;
+  --base-opp-tint--dark: #FFFFFF;
+  /* Pale lavender from the original Common3 prototype's primary buttons. */
+  --accent--dark: #E0C6FF;
+  --accent-rgb--dark: 224, 198, 255;
+  --additional--dark: #8B2CFA;
+  --additional-rgb--dark: 139, 44, 250;
+  --st-bright--dark: #F5F3F7;
+  --st-medium--dark: #766B80;
+  --st-muted--dark: #2B282E;
+  --st-opp-bright--dark: #0A0A0A;
+  --t-bright--dark: #F5F3F7;
+  --t-medium--dark: #C7C1CE;
+  --t-muted--dark: #A5A1AA;
+  --t-muted-extra--dark: #827D87;
+  --t-opp-bright--dark: #0A0A0A;
+  --t-opp-medium--dark: #38303E;
+  --t-opp-muted--dark: #655B6C;
+
+  /* Recolor the theme's existing decorative purple gradients. */
+  --pt-base-dark: #0A0A0A;
+  --pt-t-dark-bright: #0A0A0A;
+  --pt-st-dark-bright: #0A0A0A;
+  --pt-purple-rgb: 221, 67, 222;
+  --pt-purple-dark-rgb: 139, 44, 250;
+  --common3-logo-gradient: linear-gradient(65deg, #8B2CFA 0%, #D735EF 50%, #FF6268 100%);
+}
+
+/* Violet at the lower left, magenta through the middle, coral at the upper right,
+   matching the colored 3 in the supplied logo. Keep a readable solid fallback. */
+.common3-gradient-text {
+  color: var(--accent);
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .common3-gradient-text {
+    width: fit-content;
+    background-image: var(--common3-logo-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Paint each animated letter using the same gradient coordinates so Rayo's
+     per-letter opacity still works without restarting the gradient per letter. */
+  .common3-gradient-text.common3-gradient-split {
+    background-image: none;
+  }
+
+  .common3-gradient-split .char {
+    background-image: var(--common3-logo-gradient);
+    background-size: var(--common3-gradient-size);
+    background-position: var(--common3-gradient-position);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+@media (forced-colors: active) {
+  .common3-gradient-text,
+  .common3-gradient-split .char {
+    background-image: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+  }
+}

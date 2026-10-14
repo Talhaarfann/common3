@@ -1,0 +1,94 @@
+/* Common3 wordmark-to-monogram intro. The Rayo page beneath stays untouched. */
+.common3-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  isolation: isolate;
+  color: #f5f3f7;
+  animation: c3-loader-failsafe 0s 10s forwards;
+}
+.common3-preloader[hidden] { display: none; }
+.c3-loader-panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(50% + 1px);
+  background: #0a0a0a;
+  will-change: transform;
+}
+.c3-loader-panel--top { top: 0; }
+.c3-loader-panel--bottom { bottom: 0; }
+.c3-loader-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  overflow: hidden;
+}
+.c3-loader-wordmark {
+  position: relative;
+  width: min(1120px, 142vw);
+  aspect-ratio: 2 / 1;
+  opacity: 0;
+}
+.c3-loader-piece {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+/* Crop the supplied bitmap into moving pieces, keeping the original lettering. */
+.c3-loader-piece--c { clip-path: inset(35% 73.5% 44% 17%); }
+.c3-loader-piece--middle { clip-path: inset(35% 22% 44% 26.5%); }
+.c3-loader-piece--three { clip-path: inset(35% 17% 44% 78%); }
+.c3-loader-piece--tagline { clip-path: inset(60% 17% 32% 17%); }
+.c3-loader-mark {
+  position: absolute;
+  width: clamp(210px, 27vw, 330px);
+  height: auto;
+  opacity: 0;
+  transform: scale(.66);
+}
+.c3-loader-seam {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8b2cfa, #d735ef 52%, #ff6268);
+  box-shadow: 0 0 28px #d735ef66;
+  transform: scaleX(0);
+}
+.c3-loader-caption {
+  position: absolute;
+  left: clamp(24px, 4vw, 64px);
+  bottom: clamp(28px, 5vh, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font: 500 10px/1.4 var(--_font-default, sans-serif);
+  letter-spacing: .18em;
+  color: #a5a1aa;
+}
+.c3-loader-caption span:first-child { color: #f5f3f7; }
+.c3-loader-skip {
+  position: absolute;
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(28px, 5vh, 64px);
+  padding: 10px 0 10px 16px;
+  border: 0;
+  background: none;
+  color: #c7c1ce;
+  font: 400 13px/1.4 var(--_font-default, sans-serif);
+  cursor: pointer;
+}
+.c3-loader-skip span { margin-left: 10px; color: #d735ef; }
+.c3-loader-skip:focus-visible { outline: 2px solid #d735ef; outline-offset: 5px; }
+@keyframes c3-loader-failsafe { to { visibility: hidden; pointer-events: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .c3-loader-wordmark { opacity: 1; }
+  .c3-loader-seam { display: none; }
+}

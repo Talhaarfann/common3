@@ -37,6 +37,17 @@ return [
 
     'mailers' => [
 
+        'common3' => [
+            'transport' => 'smtp',
+            'scheme' => env('CONTACT_MAIL_SCHEME', 'smtps'),
+            'host' => env('CONTACT_MAIL_HOST', 'smtp.hostinger.com'),
+            'port' => env('CONTACT_MAIL_PORT', 465),
+            'username' => env('CONTACT_MAIL_USERNAME', 'info@common3.com'),
+            'password' => env('CONTACT_MAIL_PASSWORD'),
+            'timeout' => 15,
+            'local_domain' => parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST),
+        ],
+
         'smtp' => [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
